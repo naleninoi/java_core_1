@@ -3,12 +3,13 @@ package lesson_6;
 public class Cat extends Animal {
 
     private String color;
-
     private static int catsCounter;
 
     public Cat(String name, String color) {
         setName(name);
         this.color = color;
+        setMaxRunRange(200);
+        setMaxSwimRange(0);
         catsCounter += 1;
     }
 
@@ -41,6 +42,8 @@ public class Cat extends Animal {
 
     @Override
     public void swim(int range) {
-        System.out.printf("%s the cat can't swim at all!%n", getName());
+        range = range < 0 ? 0 : range;
+        range = range > getMaxSwimRange() ? getMaxSwimRange() : range;
+        System.out.printf("%s the cat has swum %d metres.%n", getName(), range);
     }
 }
